@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { scheduler } = require('timers/promises');
 
 const userSchema = new Schema(
     {
