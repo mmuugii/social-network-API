@@ -21,6 +21,7 @@ module.exports = {
     async getSingleUser(req, res) {
         try {
             const user = await User.findOne({_id: req.params.userId}).select('-__v');
+            res.json(user);
         } catch (error) {
             res.status(500).json(error);
         }
@@ -28,6 +29,7 @@ module.exports = {
     async updateUser(req, res) {
         try {
             const user = await User.findOneAndUpdate({_id: req.params.userId}, {$set: req.body}, {runValidators: true, new: true});
+            res.json(user);
         } catch (error) {
             res.status(500).json(error);
         }
@@ -35,6 +37,7 @@ module.exports = {
     async deleteUser(req, res) {
         try {
             const user = await User.findOneAndRemove({_id: req.params.userId});
+            !user ? res.status(404).json({message: "User not found!"}) : res.json(user);
         } catch (error) {
             res.status(500).json(error);
         }
@@ -42,6 +45,7 @@ module.exports = {
     async addOneFriend(req, res) {
         try {
             const user = await User.findOneAndUpdate({_id: req.params.userId}, {$addToSet: {friends: req.params.friendId}}, { new: true});
+            res.json(user);
         } catch (error) {
             res.status.json(error);
         }
@@ -49,6 +53,7 @@ module.exports = {
     async deleteFriend(req, res) {
         try {
             const user = await User.findOneAndUpdate({_id: req.params.userId}, {$pull: {friends: req.params.friendId}}, {new: true});
+            res.json(user);
         } catch (error) {
             res.status.json(error);
         }
