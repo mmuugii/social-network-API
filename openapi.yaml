@@ -1,0 +1,312 @@
+openapi: 3.0.0
+
+info:
+  title: Social Media API
+  description: An API that is would be used for a social media company's backend. The API has full CRUD functionality, as well as having the option to have users have a 'thought' and other users being able to react to said 'thought'.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3001
+
+paths:
+  /api/users:
+    get:
+      summary: Get all users
+      
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    # Add the properties of the User object here
+    post:
+      summary: Create a new user
+      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                # Add the properties of the User object here
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the User object here
+
+  /api/users/{userId}:
+    get:
+      summary: Get a single user by ID
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the User object here
+    put:
+      summary: Update a user by ID
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                # Add the properties of the User object here
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the User object here
+    delete:
+      summary: Delete a friend by ID
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Friend deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the User object here
+
+  /api/users/{userId}/friends/{friendId}:
+    post:
+      summary: Add a friend to a user's friend list
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: friendId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Friend added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the User object here
+    delete:
+      summary: Remove a friend from a user's friend list
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: friendId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+        description: Friend removed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the User object here
+
+  /api/thoughts:
+    get:
+      summary: Get all thoughts
+      # Add a more detailed description, if necessary
+      responses:
+        '200':
+        description: Successful response
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                # Add the properties of the Thought object here
+    post:
+      summary: Create a new thought
+      # Add a more detailed description, if necessary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                # Add the properties of the Thought object here
+      responses:
+        '201':
+          description: Thought created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the Thought object here
+
+  /api/thoughts/{thoughtId}:
+    get:
+      summary: Get a single thought by ID
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: thoughtId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the Thought object here
+    put:
+      summary: Update a thought by ID
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: thoughtId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                # Add the properties of the Thought object here
+      responses:
+        '200':
+          description: Thought updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the Thought object here
+    delete:
+      summary: Delete a thought by ID
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: thoughtId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Thought deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the Thought object here
+
+  /api/thoughts/{thoughtId}/reactions:
+    post:
+      summary: Add a reaction to a thought
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: thoughtId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                # Add the properties of the Reaction object here
+      responses:
+        '200':
+          description: Reaction added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the Thought object here
+
+  /api/thoughts/{thoughtId}/reactions/{reactionId}:
+    delete:
+      summary: Remove a reaction from thought
+      # Add a more detailed description, if necessary
+      parameters:
+        - name: thoughtId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: reactionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reaction removed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Add the properties of the Thought object here
+

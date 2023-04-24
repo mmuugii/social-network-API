@@ -4,6 +4,9 @@
 const express = require("express");
 const db = require("./config/connection");
 const routes = require("./routes");
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./openapi.yaml');
 
 const cwd = process.cwd();
 
@@ -12,6 +15,10 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// serve swagger UI at the /api-docs path
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(routes);
 
 db.once("open", () => {

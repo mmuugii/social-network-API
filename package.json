@@ -23,6 +23,8 @@
   "dependencies": {
     "dayjs": "^1.11.7",
     "express": "^4.17.1",
-    "mongoose": "^6.0.13"
+    "mongoose": "^6.0.13",
+    "swagger-ui-express": "^4.6.2",
+    "yamljs": "^0.3.0"
   }
 }
